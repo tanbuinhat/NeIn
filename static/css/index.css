@@ -148,3 +148,7 @@ hr
 .border-right {
   border-right: 1px solid black;
 }
+.container {
+  width: 100%;
+  overflow: hidden;
+}
