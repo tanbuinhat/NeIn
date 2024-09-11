@@ -1,5 +1,8 @@
 body {
   font-family: 'Noto Sans', sans-serif;
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .footer .icon-link {
