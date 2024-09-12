@@ -8,6 +8,10 @@ body {
     color: #000;
 }
 
+.scroller{
+  overflow-y: auto;
+}
+
 .link-block a {
     margin-top: 5px;
     margin-bottom: 5px;
