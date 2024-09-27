@@ -12,23 +12,6 @@ Extensive experiments using our dataset across multiple VLMs for instruction-bas
 
 by [Nhat-Tan Bui](https://tanbuinhat.github.io/), [Dinh-Hieu Hoang](https://scholar.google.com/citations?user=713F7a8AAAAJ), [Quoc-Huy Trinh](https://huyquoctrinh.onrender.com/), [Minh-Triet Tran](https://en.hcmus.edu.vn/profile/tran-minh-triet/), [Truong Nguyen](https://jacobsschool.ucsd.edu/people/profile/truong-q-nguyen), [Susan Gauch](https://csce.uark.edu/~sgauch/)
 
-## Pipeline
-
-1. Download the MS-COCO dataset 2014 [here](https://cocodataset.org/#download) and put into ```dataset``` folder, MS-COCO list object categories [here](https://drive.google.com/file/d/1no1mq5RTQMm_qKQklv8751_CrG685ho7/view?usp=drive_link) and put into ```labels``` folder.
-2. Clone InstructPix2Pix and set up env [here](https://github.com/timothybrooks/instruct-pix2pix).
-```sh
-git clone https://github.com/timothybrooks/instruct-pix2pix.git
-```
-4. Download the MagicBrush checkpoint and put into ```checkpoints``` folder.
-```sh
-cd pipeline
-wget https://huggingface.co/osunlp/InstructPix2Pix-MagicBrush/resolve/main/MagicBrush-epoch-52-step-4999.ckpt -P checkpoints
-```
-3. Generate the COCO captions, negative clause, and generated clause.
-```sh
-python generation_phase.py --object_file labels/coco_objects.txt --coco_path datasets/coco/val2014/*.jpg --coco_annotation datasets/coco/annotations/captions_val2014.json --output jsons/nein_val_generation.json
-```
-4. 
 ### 📝 TODO
 
 - [ ] Pipeline for generating NeIn
