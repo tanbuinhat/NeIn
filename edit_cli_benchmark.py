@@ -4,10 +4,11 @@ import math
 import random
 import sys
 from argparse import ArgumentParser
-
+import json
 import einops
 import k_diffusion as K
 import numpy as np
+import os
 import torch
 import torch.nn as nn
 from einops import rearrange
@@ -62,14 +63,14 @@ def load_model_from_config(config, ckpt, vae_ckpt=None, verbose=False):
 
 def main():
     parser = ArgumentParser()
-    parser.add_argument("--resolution", default=512, type=int)
+    parser.add_argument("--resolution", default=64, type=int)
     parser.add_argument("--steps", default=100, type=int)
     parser.add_argument("--config", default="configs/generate.yaml", type=str)
     parser.add_argument("--ckpt", default="checkpoints/instruct-pix2pix-00-22000.ckpt", type=str)
     parser.add_argument("--vae-ckpt", default=None, type=str)
-    parser.add_argument("--input", required=True, type=str)
-    parser.add_argument("--output", required=True, type=str)
-    parser.add_argument("--edit", required=True, type=str)
+    parser.add_argument("--image_dir", default="outputs/val_nein_samples/", type=str)
+    parser.add_argument("--output_dir", default="outputs/instructpix2pix_nein/", type=str)
+    parser.add_argument("--json_file", default="jsons/nein_val.json", type=str)
     parser.add_argument("--cfg-text", default=7.5, type=float)
     parser.add_argument("--cfg-image", default=1.5, type=float)
     parser.add_argument("--seed", type=int)
@@ -83,45 +84,58 @@ def main():
     null_token = model.get_learned_conditioning([""])
 
     seed = random.randint(0, 100000) if args.seed is None else args.seed
-    input_image = Image.open(args.input).convert("RGB")
-    width, height = input_image.size
-    factor = args.resolution / max(width, height)
-    factor = math.ceil(min(width, height) * factor / 64) * 64 / min(width, height)
-    width = int((width * factor) // 64) * 64
-    height = int((height * factor) // 64) * 64
-    input_image = ImageOps.fit(input_image, (width, height), method=Image.Resampling.LANCZOS)
+    output_dir = args.output_dir
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    image_dir = args.image_dir
+    instructions = []
+    image_paths = []
+    
+    with open(args.json_file, 'r') as reader:
+        captions_data = json.load(reader)
+        
+    for item in captions_data:
+        instructions.append(item["T_negative"])
+        image_paths.append(item['output'])
+    
+    for i, instruction in enumerate(instructions):
+        output_image = os.path.join(output_dir, image_paths[i]) + ".jpg"
+        input_image = Image.open(os.path.join(image_dir, image_paths[i]) + ".jpg").convert("RGB")
+        width, height = input_image.size
+        factor = args.resolution / max(width, height)
+        factor = math.ceil(min(width, height) * factor / 64) * 64 / min(width, height)
+        width = int((width * factor) // 64) * 64
+        height = int((height * factor) // 64) * 64
+        input_image = ImageOps.fit(input_image, (width, height), method=Image.Resampling.LANCZOS)
+        edit = instructions[i]
 
-    if args.edit == "":
-        input_image.save(args.output)
-        return
+        with torch.no_grad(), autocast("cuda"), model.ema_scope():
+            cond = {}
+            cond["c_crossattn"] = [model.get_learned_conditioning([edit])]
+            input_image = 2 * torch.tensor(np.array(input_image)).float() / 255 - 1
+            input_image = rearrange(input_image, "h w c -> 1 c h w").to(model.device)
+            cond["c_concat"] = [model.encode_first_stage(input_image).mode()]
 
-    with torch.no_grad(), autocast("cuda"), model.ema_scope():
-        cond = {}
-        cond["c_crossattn"] = [model.get_learned_conditioning([args.edit])]
-        input_image = 2 * torch.tensor(np.array(input_image)).float() / 255 - 1
-        input_image = rearrange(input_image, "h w c -> 1 c h w").to(model.device)
-        cond["c_concat"] = [model.encode_first_stage(input_image).mode()]
+            uncond = {}
+            uncond["c_crossattn"] = [null_token]
+            uncond["c_concat"] = [torch.zeros_like(cond["c_concat"][0])]
 
-        uncond = {}
-        uncond["c_crossattn"] = [null_token]
-        uncond["c_concat"] = [torch.zeros_like(cond["c_concat"][0])]
+            sigmas = model_wrap.get_sigmas(args.steps)
 
-        sigmas = model_wrap.get_sigmas(args.steps)
-
-        extra_args = {
-            "cond": cond,
-            "uncond": uncond,
-            "text_cfg_scale": args.cfg_text,
-            "image_cfg_scale": args.cfg_image,
-        }
-        torch.manual_seed(seed)
-        z = torch.randn_like(cond["c_concat"][0]) * sigmas[0]
-        z = K.sampling.sample_euler_ancestral(model_wrap_cfg, z, sigmas, extra_args=extra_args)
-        x = model.decode_first_stage(z)
-        x = torch.clamp((x + 1.0) / 2.0, min=0.0, max=1.0)
-        x = 255.0 * rearrange(x, "1 c h w -> h w c")
-        edited_image = Image.fromarray(x.type(torch.uint8).cpu().numpy())
-    edited_image.save(args.output)
+            extra_args = {
+                "cond": cond,
+                "uncond": uncond,
+                "text_cfg_scale": args.cfg_text,
+                "image_cfg_scale": args.cfg_image,
+            }
+            torch.manual_seed(seed)
+            z = torch.randn_like(cond["c_concat"][0]) * sigmas[0]
+            z = K.sampling.sample_euler_ancestral(model_wrap_cfg, z, sigmas, extra_args=extra_args)
+            x = model.decode_first_stage(z)
+            x = torch.clamp((x + 1.0) / 2.0, min=0.0, max=1.0)
+            x = 255.0 * rearrange(x, "1 c h w -> h w c")
+            edited_image = Image.fromarray(x.type(torch.uint8).cpu().numpy())
+        edited_image.save(output_image)
 
 
 if __name__ == "__main__":
