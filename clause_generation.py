@@ -86,9 +86,9 @@ def generation(model, objects, captions_dict, sentences, coco_images, device, ou
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--object-file", default="label/coco_objects.txt", type=str, help='path to list coco objects')
-    parser.add_argument("--coco-path", default="dataset/val2014", type=str, help='path to coco image')
-    parser.add_argument("--coco-annotation", default="dataset/annotations/captions_val2014.json", type=str, help='annotations of COCO')
-    parser.add_argument("--output-json", default="jsons/val_generation.json", type=str, help='json file to store the image name and all clauses')
+    parser.add_argument("--coco-path", default="dataset/coco", type=str, help='path to coco image')
+    parser.add_argument("--coco-annotation", default="dataset/annotations/captions.json", type=str, help='annotations of COCO')
+    parser.add_argument("--output-json", default="jsons/generation.json", type=str, help='json file to store the image name and all clauses')
     args = parser.parse_args()
 
     coco_objects = args.object_file
