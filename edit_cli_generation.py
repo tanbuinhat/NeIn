@@ -68,7 +68,7 @@ def main():
     parser.add_argument("--ckpt", default="checkpoints/MagicBrush-epoch-52-step-4999.ckpt", type=str)
     parser.add_argument("--vae-ckpt", default=None, type=str)
     parser.add_argument("--input-json", default="jsons/generation.json", type=str, help='path to the clause file from clause_generation')
-    parser.add_argument("--input-folder", default="datasets/coco", type=str)
+    parser.add_argument("--input-folder", default="dataset/coco", type=str)
     parser.add_argument("--output", default="outputs/nein_samples", type=str)
     parser.add_argument("--cfg-text", default=7.5, type=float)
     parser.add_argument("--cfg-image", default=1.5, type=float)
