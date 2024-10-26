@@ -62,9 +62,9 @@ def filtering(model, clause_file, generated_samples, filtering_json):
         
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--input-json", default="jsons/val_generation.json", type=str, help='path to the clause file from clause_generation')
-    parser.add_argument("--samples-path", default="outputs/val_nein_samples/*.jpg", type=str, help='path to generated samples')
-    parser.add_argument("--output-json", default="jsons/val_filtering.json", type=str, help='json file to store the names of filtered images')
+    parser.add_argument("--input-json", default="jsons/generation.json", type=str, help='path to the clause file from clause_generation')
+    parser.add_argument("--samples-path", default="outputs/nein_samples/*.jpg", type=str, help='path to generated samples')
+    parser.add_argument("--output-json", default="jsons/filtering.json", type=str, help='json file to store the names of filtered images')
     args = parser.parse_args()
 
     with open(args.input_json, 'r') as json_file:
