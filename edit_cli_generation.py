@@ -135,7 +135,7 @@ def main():
                 x = 255.0 * rearrange(x, "1 c h w -> h w c")
                 edited_image = Image.fromarray(x.type(torch.uint8).cpu().numpy())
             
-                output_image_path = f"{args.output}/{image_name.split('.')[0]}_{idx}.jpg"
+                output_image_path = (f"{args.output}/{image_name.split('.')[0]}_{idx}.jpg").replace('COCO', 'NeIn')
                 edited_image.save(output_image_path)
 
 if __name__ == "__main__":
