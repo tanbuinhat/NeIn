@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Negative Query for Vision-Language Models">
+  <meta name="keywords" content="VLMs, Negation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <title>NeIn</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/negative_icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">NeIn: Telling What You Don’t Want</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://tanbuinhat.github.io/">Nhat-Tan Bui</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=713F7a8AAAAJ">Dinh-Hieu Hoang</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://huyquoctrinh.onrender.com/">Quoc-Huy Trinh</a><sup>3,4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://en.hcmus.edu.vn/profile/tran-minh-triet/">Minh-Triet Tran</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://jacobsschool.ucsd.edu/people/profile/truong-q-nguyen">Truong Nguyen</a><sup>5</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://engineering.uark.edu/electrical-engineering-computer-science/computer-science-faculty/uid/sgauch/name/Susan+E.+Gauch/">Susan Gauch</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Arkansas, USA<sup>🇺🇸</sup></span> &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block"><sup>2</sup>University of Science, VNU-HCM, Vietnam<sup>🇻🇳</sup></span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>3</sup>Aalto University, Finland<sup>🇫🇮</sup></span> &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block"><sup>4</sup>SpexAI GmbH, Germany<sup>🇩🇪</sup></span> &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block"><sup>5</sup>University of California, San Diego, USA<sup>🇺🇸</sup></span>
+          </div>
+          <div><h2 class="subtitle">
+            <a style="color:#1B427D;"><b>CVPR 2025 Workshop SyntaGen</b></a>
+          </h2></div>
+          
+          <div class="column has-text-centered">
+            <div class="publication-links"> 
+              <!-- arxiv Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2409.06481"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> 
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/tanbuinhat/NeIn"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> 
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/nhatttanbui/NeIn"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data (Hugging Face)</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="https://drive.google.com/drive/folders/1pxiV6G__cWZ0qMOh4nDTTSiCQfkgyxPD?usp=drive_link"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data (Drive)</span>
+                  </a>
+              </span>
+              <!-- Poster Link. -->
+              <span class="link-block">
+                <a href="https://drive.google.com/file/d/1x5-eOiDmt1sPQzkjDPBIvPeuEg4Q-8lo/view?usp=drive_link"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-scroll"></i>
+                  </span>
+                  <span>Poster</span>
+                  </a>
+              </span>
+            </div> 
+          </div>
+          <blockquote>
+            "Negation is a sine qua non of every human language but is absent from otherwise complex systems of animal communication."
+            <footer>--Laurence R. Horn</footer>
+          </blockquote>   
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <center>
+        <img src="./static/images/intro.png", width="650">
+        <h2>
+          The <a style="color:red;">failures</a> of recent text-guided image editing methods in understanding the negative queries.
+        </h2>
+      </center>
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <hr>
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Negation is a fundamental linguistic concept used by humans to convey information that they do not desire. Despite this, minimal research has focused on negation within text-guided image editing. This lack of research means that vision-language models (VLMs) for image editing may struggle to understand negation, implying that they struggle to provide accurate results. One barrier to achieving human-level intelligence is the lack of a standard collection by which research into negation can be evaluated.
+              This paper presents the first large-scale dataset, <b>Ne</b>gative <b>In</b>struction (<b>NeIn</b>), for studying negation within instruction-based image editing. Our dataset comprises <b>366,957 quintuplets</b>, i.e., source image, original caption, selected object, negative sentence, and target image in total, including <b>342,775 queries for training</b> and <b>24,182 queries for benchmarking</b> image editing methods.
+              Specifically, we automatically generate NeIn based on a large, existing vision-language dataset, MS-COCO, via two steps: generation and filtering. 
+              During the generation phase, we leverage two VLMs, BLIP and InstructPix2Pix (fine-tuned on MagicBrush dataset), to generate NeIn's samples and the negative clauses that expresses the content of the source image. In the subsequent filtering phase, we apply BLIP and LLaVA-NeXT to remove erroneous samples.
+              Additionally, we introduce an evaluation protocol to assess the negation understanding for image editing models.
+              Extensive experiments using our dataset across multiple VLMs for text-guided image editing demonstrate that even recent state-of-the-art VLMs struggle to understand negative queries.
+            </p>
+          </div>
+          <hr>
+          <h2 class="title is-3">NeIn Dataset</h2>
+          <div class="content has-text-justified">
+            <p>
+              The creation of NeIn involves two primary stages: the first stage is <b>generation</b>, which employs <a href="https://arxiv.org/abs/2201.12086">BLIP</a> and <a href="https://www.timothybrooks.com/instruct-pix2pix">InstructPix2Pix</a> to generate target samples; the second stage is <b>filtering</b>, where <a href="https://arxiv.org/abs/2201.12086">BLIP</a> and <a href="https://llava-vl.github.io/blog/2024-01-30-llava-next/">LLaVA-NeXT</a> are utilized to remove erroneous samples.
+            </p>
+            <center>
+              <img src="./static/images/process.png" width="1200"/>
+            </center>
+          </div>
+          <div class="content has-text-justified">
+            <p>The main idea is that given image \(\mathcal{I}\) and a corresponding caption \(\mathcal{T}_{o}\) describing what objects are present in \(\mathcal{I}\), we will find a negative clause, termed \(\mathcal{T}_{n}\), such that it satisfies the content of source image \(\mathcal{I}\). Next, our goal is to create an image \(\mathcal{G}\) that \(\mathcal{T}_{o}\) matches it but not \(\mathcal{T}_{n}\), 
+            which means the object specified in \(\mathcal{T}_{n}\) is present in \(\mathcal{G}\). We eliminate generated samples \(\mathcal{G}\) which significantly alter the content of query image \(\mathcal{I}\) or make it difficult to identify object categories \(\mathcal{S}\) to produce the final samples \(\mathcal{F}\). 
+            Thus, in the context of image editing, given image \(\mathcal{F}\), \(\mathcal{T}_{n}\) will be a query for removing some object in \(\mathcal{F}\), taking \(\mathcal{I}\) as one of the best results.
+            </p>
+          </div>
+          <hr>
+          <h2 class="title is-3">Evaluation Protocol</h2>
+          <div class="content has-text-justified">
+            <p>We consider whether image editing methods 
+              <ol>
+                <li>Can <b>eliminate</b> the object categories <a style="color:blue;">specified</a> in the negative sentence.</li>
+                <li>Can <b>preserve</b> the object categories <a style="color:blue;">not mentioned</a> in the negative sentence.</li>
+              </ol>
+              The first is determined by the <b>Removal Evaluation</b>, while the second is assessed using the <b>Retention Evaluation</b>. 
+              Since the purpose of both metrics is to identify objects, we consider the visual question answering (VQA), represented by <a href="https://llava-vl.github.io/blog/2024-01-30-llava-next/">LLaVA-NeXT</a> and open-vocabulary object detection (OVD), represented by <a href="https://arxiv.org/abs/2306.09683">OWLv2</a>. 
+            </p>
+            <center>
+              <h2 class="title is-5">Removal Evaluation</h2>
+              <img src="./static/images/removal.png" width="1200"/>
+            </center>
+            <p>
+            <center>
+              <h2 class="title is-5">Retention Evaluation</h2>
+              <img src="./static/images/retention.png" width="1200"/>
+            </center>
+            </p>
+          </div>
+
+          <hr>
+          <h2 class="title is-3">Results</h2>
+          <div class="content has-text-justified">
+            <center>
+              <img src="./static/images/quantitative_result.png" width="1200"/>
+              <figcaption>Quantitative results of five SOTAs on the evaluation set of NeIn. The InstructPix2Pix (\(2^{nd}\) row) and MagicBrush (\(4^{th}\) row) fine-tuned on NeIn’s training set are <span style="background-color: #FFF2D9">highlighted</span>.</figcaption>
+            </center>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              None of the five methods perform well on pixel-level
+              metrics, such as L1 and L2, or on image quality metrics, such as CLIP-I, DINO, FID, and LPIPS, indicating
+              that negative prompts are considerably challenging.
+              This is particularly evident when considering the Removal and Retention scores.
+            </p>
+            <center>
+              <img src="./static/images/qualitative_result.png" width="1200"/>
+              <figcaption>Qualitative results of five methods on NeIn’s evaluation samples (first two samples) and random image-prompt pairs (last two samples).</figcaption>
+            </center>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              Instead of removing the mentioned objects, original image editing models tend to
+              have the following problems: <b>(1)</b> retaining the mentioned
+              object in the edited image; <b>(2)</b> increasing the quantity of
+              mentioned object in the generated image, and even bringing that object to the center of the images; and <b>(3)</b> completely
+              replacing the content of the query image with that object.
+            </p>
+            <p>
+              On the contrary, the fine-tuned InstructPix2Pix and MagicBrush models clearly demonstrate the ability to remove
+              objects specified in negative queries. This suggests that, following fine-tuning with NeIn, VLMs
+              may be capable of understanding negation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</section>
+
+<section class="section is-light" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">Citation</h2>
+    <pre><code>@article{bui2024nein,
+      author={Bui, Nhat-Tan and Hoang, Dinh-Hieu and Trinh, Quoc-Huy and Tran, Minh-Triet and Nguyen, Truong and Gauch, Susan},
+      title={NeIn: Telling What You Don't Want},
+      journal={arXiv preprint arXiv:2409.06481},
+      year={2024}
+    }</code></pre>
+  </div>
+</section>
+
+
+<footer class="section" style="background-color:#f3f3f3">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>NeIn means "no" in German 🌹.</p>
+          <p>
+            We would like to thank the authors of <a href="https://nerfies.github.io/">Nerfies</a> for this website template, the source code can be found
+            <a href="https://github.com/nerfies/nerfies.github.io">here</a>. We also thank <a href="https://quanmai.github.io/">Quan Mai</a> and <a href="https://dblp.org/pid/223/1830.html">Trong-Le Do</a> for their valuable help and feedback.
+            Icon credits to <a href="https://www.flaticon.com/free-icon/failed_10860954?term=failed+searching&page=1&position=17&origin=search&related_id=10860954">Flaticon</a>. Special thanks to <a href="https://www.instagram.com/aurixdoodle/">aurixdoodle</a> for her lovely cuteness. Thank you 🪐💗🌕.
+            <center>
+              {\__/}<br>
+              ( • - •)<br>
+              🌱< \
+            </center>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
