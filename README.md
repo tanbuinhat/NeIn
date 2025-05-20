@@ -1,4 +1,4 @@
-# NeIn: Telling What You Don’t Want 🌱🌻🌺
+# NeIn: Telling What You Don’t Want (CVPRW 2025)🌱🌻🌺
 
 ### [Project Page](https://tanbuinhat.github.io/NeIn/) | [Paper](https://arxiv.org/abs/2409.06481) | [Data (Drive)](https://drive.google.com/drive/folders/1pxiV6G__cWZ0qMOh4nDTTSiCQfkgyxPD?usp=drive_link) | [Data (Hugging Face)](https://huggingface.co/datasets/nhatttanbui/NeIn)
 
@@ -76,14 +76,14 @@ python evaluation_protocol/VQA/removal_eval.py --output-json removal_vqa_conside
 
 ```
 python evaluation_protocol/VQA/check_obj.py --output-json retention_obj_vqa.json --nein-json val.json --nein-folder nein_val
-python evaluation_protocol/OVD/retention_eval.py --output-json retention_vqa_considered.json --retention-json retention_obj_vqa.json --edited-folder considered_results
+python evaluation_protocol/VQA/retention_eval.py --output-json retention_vqa_considered.json --retention-json retention_obj_vqa.json --edited-folder considered_results
 ```
 </ol>
 
 
 
 ### Acknowledgement
-NeIn is created based on these wonderful works: [InstructPix2Pix](https://www.timothybrooks.com/instruct-pix2pix), [MagicBrush](https://osu-nlp-group.github.io/MagicBrush/), and [BLIP](https://github.com/salesforce/BLIP). Thank you 🪐💗🌕.
+NeIn is created based on these wonderful works: [InstructPix2Pix](https://www.timothybrooks.com/instruct-pix2pix), [MagicBrush](https://osu-nlp-group.github.io/MagicBrush/), [BLIP](https://github.com/salesforce/BLIP), and [LLaVA-NeXT](https://llava-vl.github.io/blog/2024-01-30-llava-next/). Thank you 🪐💗🌕.
 
 ### Citation
 
