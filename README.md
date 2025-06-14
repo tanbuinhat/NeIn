@@ -2,6 +2,8 @@
 
 ### [Project Page](https://tanbuinhat.github.io/NeIn/) | [Paper](https://arxiv.org/abs/2409.06481) | [Data (Drive)](https://drive.google.com/drive/folders/1pxiV6G__cWZ0qMOh4nDTTSiCQfkgyxPD?usp=drive_link) | [Data (Hugging Face)](https://huggingface.co/datasets/nhatttanbui/NeIn)
 
+### 🏆 Best Paper Award
+
 Negation is a fundamental linguistic concept used by humans to convey information that they do not desire. Despite this, minimal research has focused on negation within text-guided image editing. This lack of research means that vision-language models (VLMs) for image editing may struggle to understand negation, implying that they struggle to provide accurate results. One barrier to achieving human-level intelligence is the lack of a standard collection by which research into negation can be evaluated.
 This paper presents the first large-scale dataset, **Ne**gative <b>In</b>struction (<b>NeIn</b>), for studying negation within instruction-based image editing. Our dataset comprises <b>366,957 quintuplets</b>, i.e., source image, original caption, selected object, negative sentence, and target image in total, including <b>342,775 queries for training</b> and <b>24,182 queries for benchmarking</b> image editing methods.
 Specifically, we automatically generate NeIn based on a large, existing vision-language dataset, MS-COCO, via two steps: generation and filtering. 
