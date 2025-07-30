@@ -90,10 +90,12 @@ NeIn is created based on these wonderful works: [InstructPix2Pix](https://www.ti
 ### Citation
 
 ```
-@article{bui2024nein,
-      author={Bui, Nhat-Tan and Hoang, Dinh-Hieu and Trinh, Quoc-Huy and Tran, Minh-Triet and Nguyen, Truong and Gauch, Susan},
-      title={NeIn: Telling What You Don't Want},
-      journal={arXiv preprint arXiv:2409.06481},
-      year={2024}
+@InProceedings{Bui_2025_CVPR,
+    author    = {Bui, Nhat-Tan and Hoang, Dinh-Hieu and Trinh, Quoc-Huy and Tran, Minh-Triet and Nguyen, Truong and Gauch, Susan},
+    title     = {NeIn: Telling What You Don't Want},
+    booktitle = {Proceedings of the Computer Vision and Pattern Recognition Conference (CVPR) Workshops},
+    month     = {June},
+    year      = {2025},
+    pages     = {3107-3115}
 }
 ```
